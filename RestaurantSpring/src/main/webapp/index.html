@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="content-type"
+	content="application/xhtml+xml; charset=UTF-8" />
+<title>Restaurant</title>
+
+<!-- <script
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/validateAndRequestSenderDelete.js"></script>
+<script type="text/javascript" src="scripts/validateAndRequestSenderCreate.js"></script>
+<script type="text/javascript" src="scripts/validateAndRequestSenderUpdate.js"></script>
+<script type="text/javascript" src="scripts/validateAndRequestSenderRetrieve.js"></script>
+ <script type="text/javascript" src="scripts/resultPrinter.js"></script>-->
+ 
+</head>
+<h1>Welcome to our restaurant...</h1>
+	<h3>Enter the receipe details...</h3>
+	<h2>RECEIPE ID : <input id="id" type="text" id="receipeIdCreate"><br> <br></h2>
+	<h2>RECEIPE NAME : <input type="text" id="receipeNameCreate"><br></h2>
+	<button id="create" type="button" onclick="onCreate()">CREATE</button>
+	<div class="error-messages-while-submitting" style="display:none;"></div>
+    <div id="message" style="display:none;"></div>
+   <!-- <div id="employeeDetails-results" style="font-size: 0.6cm;font-style: italic;font-family: cursive;"></div>	-->
+    <p id = "create-message"></p>
+    <br>
+    <br>
+
+
+	<h2>RECEIPE ID : <input type="text" id="receipeIdRetrieve"><br> <br></h2>
+	
+	<button id="retrieve" type="button" onclick="onRetrieve()" >RETRIEVE</button>
+	<div class="error-messages-while-submitting" style="display:none;"></div>
+    <div class="message" style="display:none;"></div>
+      <p id = "retrieve-message"></p>
+    <br>
+    <br>
+
+	<h2>RECEIPE ID : <input type="text" id="receipeIdUpdate"></h2><br> <br>
+	<h5>Update the receipe name...</h5>
+	<h2>RECEIPE NAME : <input type="text" id="receipeNameUpdate"></h2><br>
+	<button id="update" type="button" onclick="onUpdate()">UPDATE</button>
+	<div class="error-messages-while-submitting" style="display:none;"></div>
+    <div id="message" style="display:none;"></div>
+    <p id = "update-message"></p>
+    <br>
+    <br>
+    
+    
+	<h2>RECEIPE ID : <input type="text" id="receipeIdDelete"></h2><br> <br>
+
+	<button id="delete" type="button" onclick="onDelete()">DELETE</button>
+	<div class="error-messages-while-submitting" style="display:none;"></div>
+    <div id="message" style="display:none;"></div>
+    <p id = "delete-message"></p>
+    
+    <br>
+    <br>
+ 
+     
+    <script>
+    function onCreate() {
+    	var receipeIdCreate=document.getElementById("receipeIdCreate").value;
+    	var receipeNameCreate=document.getElementById("receipeNameCreate").value;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("create-message").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("POST", "/create?receipeId="+receipeIdCreate+"&receipeName="+receipeNameCreate, true);
+      xhttp.send();
+    }
+    function onRetrieve() {
+    	var receipeIdRetrieve=document.getElementById("receipeIdRetrieve").value;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("retrieve-message").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "/retrieve?receipeId="+receipeIdRetrieve, true);
+      xhttp.send();
+    }
+    function onUpdate() {
+    	var receipeIdUpdate=document.getElementById("receipeIdUpdate").value;
+    	var receipeNameUpdate=document.getElementById("receipeNameUpdate").value;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("update-message").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "/update?receipeId="+receipeIdUpdate+"&receipeName="+receipeNameUpdate, true);
+      xhttp.send();
+    }
+    function onDelete() {
+    	var receipeIdDelete=document.getElementById("receipeIdDelete").value;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("delete-message").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "/delete?receipeId="+receipeIdDelete, true);
+      xhttp.send();
+    }
+   
+    </script>
+
+</body>
+</html>
